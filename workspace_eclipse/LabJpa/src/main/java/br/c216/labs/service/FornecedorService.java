@@ -1,0 +1,34 @@
+package br.c216.labs.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import br.c216.labs.repository.FornecedorRepository;
+import br.c216.labs.entity.Fornecedor;
+
+@Service
+@Transactional
+public class FornecedorService {
+
+    @Autowired
+    private FornecedorRepository fornecedorRepository;
+
+    public Fornecedor salvar(Fornecedor f) {
+        return fornecedorRepository.save(f);
+    }
+
+    public Optional<Fornecedor> buscarPeloId(Long id) {
+        return fornecedorRepository.findById(id);
+    }
+
+    public List<Fornecedor> listar() {
+        return fornecedorRepository.findAll();
+    }
+
+    public void remover(Fornecedor f) {
+        fornecedorRepository.delete(f);
+    }
+}
